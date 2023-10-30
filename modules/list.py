@@ -1,0 +1,2 @@
+
+trainer_names = []
