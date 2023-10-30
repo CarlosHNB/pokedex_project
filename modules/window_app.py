@@ -33,15 +33,36 @@ def details_pokemon(pokemon_name):
         poke_image_tk = ImageTk.PhotoImage(image_pokemon.resize((300, 300)))
         poke_label_tk = Label(image=poke_image_tk, bg=color_bg)
         poke_label_tk.image = poke_image_tk
-        poke_label_tk.place(relx=0.3, rely=0.45, anchor="center")
+        poke_label_tk.place(relx=0.35, rely=0.45, anchor="center")
     
-    
-    label_nome_poke = Label(text=nome_poke, width=15, bg=None)
+    # Nome, ID, Tipo
+    label_nome_poke = Label(text=nome_poke, width=15, bg=color_bg)
     label_nome_poke.place(relx=0.1, rely=0.065, anchor="center")
-    label_id_poke = Label(text=id, width=10, bg=None)
+    label_id_poke = Label(text=id, width=10, bg=color_bg)
     label_id_poke.place(relx=0.095, rely=0.12, anchor="center")
-    label_tipo_poke = Label(text=tipo, width=10, bg=None)
+    label_tipo_poke = Label(text=tipo, width=10, bg=color_bg)
     label_tipo_poke.place(relx=0.095, rely=0.18, anchor="center")
+
+    # Status
+    value_hp = f"HP - {request_json['stats'][0]['base_stat']}"
+    value_attack = f"ATTACK - {request_json['stats'][1]['base_stat']}"
+    value_defense = f"DEFENSE - {request_json['stats'][2]['base_stat']}"
+    value_special_attack = f"SPECIAL-ATTACK - {request_json['stats'][3]['base_stat']}"
+    value_special_defense = f"SPECIAL-DEFENSE - {request_json['stats'][4]['base_stat']}"
+    value_speed = f"SPEED - {request_json['stats'][5]['base_stat']}"
+    
+    label_hp = Label(text=value_hp, bg=color_info)
+    label_hp.place(relx=0.79, rely=0.55, anchor="center")
+    label_attack = Label(text=value_attack, bg=color_info)
+    label_attack.place(relx=0.8091, rely=0.60, anchor="center")
+    label_defense = Label(text=value_defense, bg=color_info)
+    label_defense.place(relx=0.79, rely=0.651, anchor="center")
+    label_special_attack = Label(text=value_special_attack, bg=color_info)
+    label_special_attack.place(relx=0.82, rely=0.70, anchor="center")
+    label_special_defense = Label(text=value_special_defense, bg=color_info)
+    label_special_defense.place(relx=0.82, rely=0.75, anchor="center")
+    label_speed = Label(text=value_speed, bg=color_info)
+    label_speed.place(relx=0.80, rely=0.79, anchor="center")
     
     
     # label_habilidades_poke = Label()
@@ -57,29 +78,34 @@ def main():
     
     root = Tk()
     root.title("POKÉDEX")
-    root.geometry('828x465+350+85')
+    root.geometry('830x467+350+85')
     root.resizable(0,0)
     
-    img_background = PhotoImage(file="pokemon_project/pictures/pokedex_art.png")
+    # Adicionando a imagem de fundo
+    img_background = PhotoImage(file="pictures\pokedex_art.png")
     img_background_label = Label(root, image=img_background, bg=color_bg)
-    img_background_label.place(x=0, y=0)
+    img_background_label.grid(row=0, column=0)
+
+  
     
     # lbl = Label(root, text=f"Bem Vindo, {list.trainer_names[0].title()}",
     #             bg=color_bg, font=('Franklin Gothic Medium Cond', 15))
     
     # lbl.place(relx=0.15, rely=0.090, anchor='center')
     
-    label_poke = Label(root, text="Buscar - Id / Nome", bg=color_bg, font=("Tw Cen MT Condensed", 12, "bold"))
+    label_poke = Label(root, text="Buscar - Id / Nome", bg=color_bg, font=("Tw Cen MT Condensed", 15, "bold"), anchor="center")
+    
     label_poke.place(relx=0.85, rely=0.1, anchor="center")
 
-    entry_poke = Entry(root, font=('Ubuntu', 12, "bold"),  justify='center', width=13)
+    entry_poke = Entry(root, font=('Ubuntu', 12, "bold"),  justify='center', width=13, bg=None)
     entry_poke.place(relx=0.85, rely=0.2, anchor="center")
     
-    button_submit = Button(root, text="Buscar", bd=1 , fg="black", 
+    button_submit = Button(root, text="Buscar", bd=1 , bg="white", fg="black", 
                        font=('Helvetica', 10, "bold"),
                        command=lambda: [details_pokemon(entry_poke.get())])
 
     button_submit.place(relx=0.85, rely=0.3, anchor="center")
+    
     
 
     
