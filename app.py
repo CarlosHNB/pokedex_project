@@ -40,7 +40,7 @@ font=(
 ), anchor="center", 
 # Lambda que recebe o input do usuário, destrói a tela e abre a segunda janela.
 command=lambda: [list.trainer_names.append(entry_name.get()), 
-                 root.destroy, window_app.main()])
+                 root.destroy(), window_app.main()])
 
 button_submit.grid(row=4, column=0, pady=10)
 
